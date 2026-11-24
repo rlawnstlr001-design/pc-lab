@@ -3,6 +3,11 @@ const CFG = window.PC_CONFIG || {};
 const KEY = 'pc_progress';
 const cache = new Map();
 
+// 장(10레벨 묶음) 목록 — 스테이지 지도용(cases/chapters.json)
+export async function loadChapters() {
+  try { const r = await fetch('cases/chapters.json?v=dev'); if (r.ok) return await r.json(); } catch { /* 기본값 */ }
+  return [];
+}
 export async function loadLevels() {
   try {
     const r = await fetch('cases/levels.json?v=dev');

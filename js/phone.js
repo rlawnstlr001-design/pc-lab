@@ -1,12 +1,14 @@
-// 가짜 폰: 잠금 화면 · 홈 · 메신저 · 사진 · 메모 · 전화 · 안쪽 잠금 · 수사 노트
-import { esc, bar, avatar, photo, fmtDay, fmtTime, fmtClock, fmtLockDate, fmtShortDay, sameDay, fmtDur, toast, go } from './ui.js';
-import { progress, checkCode, loadSecretDev, rpc, track, startPlay } from './store.js';
+// 가짜 폰: 잠금 화면 · 홈 · 메신저 · 사진 · 메모 · 전화 · 안쪽 잠금 · 수사 노트 (메일·은행·캘린더·위치 기록은 apps2.js)
+import { esc, bar, avatar, photo, fmtDay, fmtTime, fmtClock, fmtLockDate, fmtShortDay, sameDay, fmtDur, toast, go } from './ui.js?v=202611241048';
+import { progress, checkCode, loadSecretDev, rpc, track, startPlay } from './store.js?v=202611241048';
+import { APP_META2, notiText, pinLine, mailList, mailView, bank, calendar, maps } from './apps2.js?v=202611241048';
 
 const APP_META = {
   messenger: { name: '메신저', icon: '✉', bg: '#0f7b6c', path: 'm' },
   gallery: { name: '사진', icon: '▦', bg: '#c4602a', path: 'g' },
   notes: { name: '메모', icon: '✎', bg: '#d1a20f', path: 'n' },
   calls: { name: '전화', icon: '☏', bg: '#3e64c9', path: 'c' },
+  ...APP_META2,
 };
 
 // ── 볼 수 있는가 ───────────────────────────────
@@ -33,6 +35,8 @@ function keypad(len, entered) {
 
 function lockScreen(c, s) {
   const notis = (c.lock.notifications || []).map((id) => c.byId.get(id)).filter(Boolean).map((it) => {
+    const n2 = notiText(c, it);
+    if (n2) return `<div class="noti"><b><span>${APP_META[it.app].name} · ${esc(n2[0])}</span><span>${fmtShortDay(it.at)} ${fmtClock(it.at)}</span></b>${esc(n2[1])}</div>`;
     const who = it.app === 'messenger' ? (c.threads.find((t) => t.id === it.thread)?.title || '') : contactName(c, it.with);
     const what = it.app === 'messenger' ? preview(it) : it.app === 'calls' ? (it.dir === 'missed' ? '부재중 전화' : '통화') : it.title || '';
     return `<div class="noti"><b><span>${APP_META[it.app]?.name || ''} · ${esc(who)}</span><span>${fmtShortDay(it.at)} ${fmtClock(it.at)}</span></b>${esc(what)}</div>`;
@@ -121,6 +125,7 @@ function thread(c, s, lv, tid) {
   let prev = null;
   const html = msgs.map((m) => {
     const day = !prev || !sameDay(prev.at, m.at) ? `<div class="day">${fmtDay(m.at)}</div>` : '';
+    if (m.system) { prev = m; return `${day}<button class="sysmsg" data-pin="${esc(m.id)}">${esc(m.text)} <time>${fmtTime(m.at)}</time></button>`; }   // 들어왔습니다·나갔습니다 같은 안내
     const me = m.from === c.owner;
     const who = group && !me && (!prev || prev.from !== m.from || day) ? `<div class="who">${esc(c.person.get(m.from)?.short || '')}</div>` : '';
     prev = m;
@@ -150,7 +155,7 @@ function photoView(c, s, lv, id) {
   const it = c.byId.get(id);
   if (!it || !canSee(c, s, it)) return bar('사진', `#/lv/${lv}/g`) + '<p class="pad muted">볼 수 없는 사진이에요.</p>';
   markOpened(c.slug, [id]);
-  const back = it.app === 'messenger' ? `#/lv/${lv}/m/${it.thread}` : `#/lv/${lv}/g${it.album === 'hidden' ? '/hidden' : ''}`;
+  const back = it.app === 'mail' ? `#/lv/${lv}/e/${it.id}` : it.app === 'messenger' ? `#/lv/${lv}/m/${it.thread}` : `#/lv/${lv}/g${it.album === 'hidden' ? '/hidden' : ''}`;
   const pinned = s.saved.includes(id);
   return bar('', back, `<button data-pin="${esc(id)}" style="font-size:14px">${pinned ? '📌 저장됨' : '📌 저장'}</button>`) +
     `<div class="photo-view">${photo(it.img, it.alt, 'img', base(c))}
@@ -202,18 +207,21 @@ function codeSheet(c, lv, lockId, okHash, backHash) {
 function pins(c, s, lv) {
   const items = s.saved.map((id) => c.byId.get(id)).filter(Boolean);
   const line = (it) => {
-    if (it.app === 'messenger') return `<b>${esc(c.person.get(it.from)?.short || '')}</b> · ${esc(preview(it))}`;
+    if (it.app === 'messenger' && it.system) return `<b>안내</b> · ${esc(it.text)}`;
+    if (it.app === 'messenger') return `<b>${it.from === c.owner ? '나' : esc(c.person.get(it.from)?.short || '')}</b> · ${esc(preview(it))}`;
     if (it.app === 'gallery') return `<b>사진</b> · ${esc(it.alt)}`;
     if (it.app === 'notes') return `<b>메모</b> · ${esc(it.title)}`;
+    const l2 = pinLine(c, it); if (l2) return l2;
     if (it.app === 'calls') return `<b>전화</b> · ${esc(contactName(c, it.with))} ${it.dir === 'missed' ? '부재중' : fmtDur(it.dur_sec)}`;
     return '';
   };
   return bar('수사 노트', `#/lv/${lv}/phone`) + `<div class="scroll pad">${items.length ? items.map((it) =>
     `<div class="exp"><div class="small muted">${fmtDay(it.at)} ${fmtTime(it.at)}</div>${line(it)}</div>`).join('') :
-    '<p class="muted">아직 저장한 단서가 없어요. 메시지·사진·메모·전화 기록을 누르면 여기에 모여요.</p>'}</div>`;
+    '<p class="muted">아직 저장한 단서가 없어요. 메시지·사진·메모·기록을 누르면 여기에 모여요.</p>'}</div>`;
 }
 
 // ── 진입점 ─────────────────────────────────
+const H = { canSee, markOpened, base };
 export function renderPhone(c, lv, view, arg) {
   const s = progress.caseState(c.slug);
   if (!s.startedAt) { progress.update(c.slug, (x) => { x.startedAt = Date.now(); }); startPlay(c.slug); track(c.slug, 'open_phone'); }
@@ -231,6 +239,10 @@ export function renderPhone(c, lv, view, arg) {
     case 'n': return arg ? noteView(c, s, lv, arg) : notes(c, s, lv);
     case 'c': return calls(c, s, lv);
     case 'pins': return pins(c, s, lv);
+    case 'e': return arg && arg !== 'sent' ? mailView(c, s, lv, arg, H) : mailList(c, s, lv, arg, H);
+    case 'b': return bank(c, s, lv, H);
+    case 'k': return calendar(c, s, lv, H);
+    case 'l': return maps(c, s, lv, arg, H);
     default: return home(c, lv);
   }
 }

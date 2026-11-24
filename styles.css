@@ -164,3 +164,70 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .lock.peek .notis, .lock.peek .keypad-wrap { visibility: hidden; }
 .lock.peek .peek-btn { visibility: visible; background: #000a; }
 .lock.peek::after { content: "화면을 누르면 돌아가요"; position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; font-size: 12px; color: #fff; text-shadow: 0 1px 3px #000; }
+
+/* 2장 새 앱: 메일·은행·캘린더·위치 기록 */
+.tabs { display: flex; gap: 6px; padding: 8px 12px; background: var(--card); border-bottom: 1px solid var(--line); overflow-x: auto; }
+.tabs button { padding: 5px 12px; border-radius: 14px; border: 1px solid var(--line); font-size: 13px; white-space: nowrap; }
+.tabs button.on { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
+.tag { font-style: normal; font-size: 11px; border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; margin-right: 5px; color: var(--sub); }
+.mail-row { display: block; width: 100%; text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--line); background: var(--card); }
+.mail-row .top { display: flex; justify-content: space-between; gap: 8px; }
+.mail-row .top time { font-size: 11px; color: var(--sub); white-space: nowrap; }
+.mail-row .subj { font-size: 14px; margin-top: 2px; }
+.mail-row .snip { font-size: 12px; color: var(--sub); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mail-head { padding: 16px 18px 10px; border-bottom: 1px solid var(--line); background: var(--card); font-size: 13px; }
+.mail-head h3 { margin: 0 0 10px; font-size: 17px; }
+.mail-head div { display: flex; gap: 10px; padding: 2px 0; word-break: break-all; }
+.mail-head span { color: var(--sub); flex: none; width: 58px; }
+.mail-att { display: flex; flex-direction: column; gap: 6px; padding: 0 18px 20px; text-align: left; }
+.bank-head { margin: 12px; padding: 16px; border-radius: 12px; background: #1f7a3f; color: #fff; }
+.bank-head b { display: block; font-size: 24px; margin: 4px 0; }
+.tx, .ev, .loc { display: flex; gap: 12px; align-items: center; width: 100%; text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--line); background: var(--card); }
+.tx .mid, .ev .mid, .loc .mid { flex: 1; min-width: 0; }
+.tx .amt { text-align: right; flex: none; }
+.tx .amt b.in { color: #1f8a4c; } .tx .amt b.out { color: var(--ink); }
+.ev .t, .loc .t { width: 44px; flex: none; font-size: 12px; color: var(--sub); text-align: center; line-height: 1.3; }
+.ev .mid b { display: block; }
+.ev.gone b { text-decoration: line-through; color: var(--sub); }
+.cal-day { padding: 12px 16px 4px; font-size: 12px; color: var(--sub); font-weight: 700; }
+.cal-day.today { color: var(--accent); }
+.timeline .loc { border-left: 3px solid #2f7fa8; }
+.timeline .loc.move { border-left-style: dashed; padding-top: 6px; padding-bottom: 6px; background: transparent; }
+.saved.mail-row, .saved.tx, .saved.ev, .saved.loc { box-shadow: inset 3px 0 0 var(--pin); }
+
+/* 스테이지 지도 (11/24) — 아래에서 위로, 장마다 상징 그림, 못 연 장은 그림자 */
+.map-head.sticky { flex: none; background: var(--bg); border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+.stage { background: var(--bg); }
+.chap { position: relative; }
+.road { position: absolute; inset: 0; width: 100%; height: 100%; }
+.road path { fill: none; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.road .r-all { stroke: var(--sub); opacity: .35; stroke-dasharray: 2 12; }
+.road .r-done { stroke: var(--accent); opacity: .6; }
+.node { position: absolute; transform: translate(-50%, -50%); display: flex; align-items: center; z-index: 1; }
+.node .dot { width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 17px; background: var(--card); border: 3px solid var(--line); color: var(--sub); flex: none; }
+.node.boss .dot { width: 68px; height: 68px; font-size: 20px; border-width: 4px; }
+.node.done .dot { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.node.cur .dot { background: var(--card); border-color: var(--accent); color: var(--accent); animation: pulse 1.6s infinite; }
+.node.boss.cur .dot { border-color: var(--warn); color: var(--warn); }
+.node.boss.done .dot { background: var(--warn); border-color: var(--warn); }
+.node.locked .dot, .node.soon .dot { font-size: 15px; background: var(--bg); color: var(--sub); border-color: var(--line); }
+.node .lbl { position: absolute; white-space: nowrap; font-size: 13px; font-weight: 600; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 3px 8px; max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
+.node .lbl.right { left: calc(100% + 8px); } .node .lbl.left { right: calc(100% + 8px); }
+.node.cur .lbl { border-color: var(--accent); color: var(--accent); }
+.node.soon .lbl { color: var(--sub); font-weight: 400; }
+.node .lbl em { font-style: normal; color: var(--warn); font-size: 11px; }
+.banner { position: absolute; left: 14px; right: 14px; height: 128px; border-radius: 16px; overflow: hidden; background: #2b3442; color: #fff; display: flex; align-items: flex-end; }
+.banner .art { position: absolute; inset: 0; background: center/cover; }
+.banner .mark { position: absolute; right: 14px; top: 10px; font-size: 30px; }
+.banner .bt { position: relative; padding: 10px 14px; width: 100%; background: linear-gradient(transparent, #000b); display: flex; flex-direction: column; }
+.banner .bt b { font-size: 19px; }
+.banner .bt small { font-size: 12px; opacity: .85; }
+.banner.shadow { background: #15171c; }
+.banner.shadow .art { filter: grayscale(1) brightness(.16) contrast(1.6); }
+.banner.shadow .mark { filter: grayscale(1) brightness(.25); }
+.banner.cleared::after { content: "CLEAR"; position: absolute; top: 10px; left: 12px; font-size: 11px; font-weight: 800; letter-spacing: 1px; background: var(--accent); color: var(--accent-ink); padding: 2px 8px; border-radius: 10px; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 35%, transparent); } 50% { box-shadow: 0 0 0 10px color-mix(in srgb, var(--accent) 0%, transparent); } }
+
+.sysmsg { align-self: center; font-size: 12px; color: var(--sub); background: var(--line); padding: 3px 12px; border-radius: 10px; margin: 4px 0; text-align: center; }
+.sysmsg time { font-size: 10px; margin-left: 4px; }
+.saved.sysmsg { box-shadow: inset 3px 0 0 var(--pin); }

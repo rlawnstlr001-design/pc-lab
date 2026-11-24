@@ -35,7 +35,7 @@ export function photo(src, alt, cls = 'thumb', base = '') {
   const url = src ? `${base}${src}` : '';
   return `<div class="${cls}" role="img" aria-label="${esc(alt)}">
     <span class="ph">🖼 ${esc(alt)}</span>
-    ${url ? `<img src="${esc(url)}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.remove()">` : ''}
+    ${url ? `<img src="${esc(url)}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:${cls === 'img' ? 'contain' : 'cover'}" onerror="this.remove()">` : ''}
   </div>`;
 }
 

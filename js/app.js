@@ -1,8 +1,8 @@
 // 「남의 폰」(가칭) — 라우팅 · 레벨 지도 · 브리핑 · 지목 · 결과
 // #/ 지도 · #/lv/N 브리핑 · #/lv/N/phone|m|g|p|n|c|pins 폰 · #/lv/N/accuse 지목 · #/lv/N/result 결과
-import { $app, esc, go, toast } from './ui.js';
-import { loadLevels, loadCase, loadSecretDev, progress, rpc, track, startPlay } from './store.js';
-import { renderPhone, togglePin } from './phone.js';
+import { $app, esc, go, toast } from './ui.js?v=202611241048';
+import { loadLevels, loadChapters, loadCase, loadSecretDev, progress, rpc, track, startPlay } from './store.js?v=202611241048';
+import { renderPhone, togglePin } from './phone.js?v=202611241048';
 
 const CFG = window.PC_CONFIG || {};
 const TIER = { mini: '3~5분', short: '약 10분', main: '보스 · 30분' };
@@ -21,24 +21,59 @@ const unlockedUpTo = () => {
   return n;
 };
 
-// ── 레벨 지도 ─────────────────────────────────
+// ── 스테이지 지도 (11/24 준식님: 장마다 상징 그림, 레벨이 선으로 이어지고, 못 깬 장은 그림자처럼) ──
+// 아래에서 위로 올라간다. 장 = 10레벨, 장 첫머리(아래)에 상징 그림 카드, 보스(main)는 큰 동그라미.
+const XS = [22, 50, 78, 50];            // 지그재그 가로 위치(%)
+const STEP = 76, BANNER = 150;
+function chapterOf(chs, lv) {
+  return chs.find((c) => lv >= c.from && lv <= c.to) || { no: Math.ceil(lv / 10), title: '', from: Math.floor((lv - 1) / 10) * 10 + 1, to: Math.ceil(lv / 10) * 10 };
+}
 async function map() {
   const cleared = progress.get().cleared;
-  const cases = await Promise.all(LEVELS.map((s) => loadCase(s).catch(() => null)));
+  const [cases, chs] = await Promise.all([Promise.all(LEVELS.map((s) => loadCase(s).catch(() => null))), loadChapters()]);
   const open = unlockedUpTo();
   const done = LEVELS.filter((s) => cleared[s]).length;
-  const rows = cases.map((c, i) => {
-    const lv = i + 1, slug = LEVELS[i];
-    if (!c) return '';
-    const boss = c.tier === 'main';
-    const st = cleared[slug] ? '깸 ✓' : lv <= open ? '도전' : '🔒';
-    const cls = `level${boss ? ' boss' : ''}${cleared[slug] ? ' done' : ''}${lv > open ? ' locked' : ''}`;
-    return `<li><button class="${cls}" ${lv <= open ? `data-go="#/lv/${lv}"` : 'disabled'}><span class="no">Lv ${lv}</span><span class="t"><b>${lv <= open ? esc(c.title) : '???'}</b><span class="st">${TIER[c.tier || 'main']}</span></span><span class="st">${st}</span></button></li>`;
-  }).join('');
-  const more = `<li><div class="level locked"><span class="no">Lv ${LEVELS.length + 1}</span><span class="t"><b>다음 사건 준비 중</b><span class="st">열리면 알려 드릴게요</span></span></div></li>`;
-  $app().innerHTML = `<div class="scroll"><div class="map-head"><div class="small muted">남의 폰 — 남의 휴대폰으로 진실을 맞혀라</div><h1>Lv ${Math.min(open, LEVELS.length)} <span class="muted" style="font-size:16px">/ ${CFG.totalLevels || 1000}</span></h1>
+  // 보여 줄 장: 레벨이 있는 장 + 그다음 장 하나(???)
+  const lastNo = Math.max(1, ...LEVELS.map((_, i) => chapterOf(chs, i + 1).no));
+  const shown = [];
+  for (let n = 1; n <= lastNo + 1; n++) shown.push(chs.find((c) => c.no === n) || { no: n, title: '', from: (n - 1) * 10 + 1, to: n * 10 });
+  const section = (ch) => {
+    const art = ch.art ? `<span class="art" style="background-image:url('${esc(ch.art)}')"></span>` : '';
+    if (ch.from > LEVELS.length) {                                   // 아직 사건이 없는 다음 장 → 그림자 + ???
+      return `<section class="chap teaser" style="height:${BANNER}px"><div class="banner shadow" style="top:10px">${art}<span class="mark">${esc(ch.mark || '')}</span><span class="bt"><small>${ch.no}장 · Lv ${ch.from}~${ch.to}</small><b>???</b><small>앞 장 보스를 깨면 열려요</small></span></div></section>`;
+    }
+    const n = ch.to - ch.from + 1;
+    const H = BANNER + 40 + n * STEP;
+    const slugs = LEVELS.slice(ch.from - 1, ch.to);
+    const locked = ch.from > open;                                   // 못 연 장 → 그림자
+    const nDone = slugs.filter((s) => cleared[s]).length;
+    const allDone = slugs.length === n && nDone === n;
+    const pt = (i) => ({ x: XS[i % 4], y: H - BANNER - 30 - i * STEP });
+    let path = '', donePath = '';
+    for (let i = 0; i < n; i++) {
+      const p = pt(i);
+      path += `${i ? 'L' : 'M'}${p.x * 3.6} ${p.y} `;
+      if (ch.from + i <= open) donePath += `${i ? 'L' : 'M'}${p.x * 3.6} ${p.y} `;
+    }
+    const nodes = Array.from({ length: n }, (_, i) => {
+      const lv = ch.from + i, slug = LEVELS[lv - 1], c = cases[lv - 1];
+      const p = pt(i), boss = c ? c.tier === 'main' : i === n - 1;
+      const st = !c ? 'soon' : cleared[slug] ? 'done' : lv <= open ? 'cur' : 'locked';
+      const label = st === 'done' || st === 'cur' ? esc(c.title) : st === 'soon' ? '준비 중' : '';
+      const side = p.x > 50 ? 'left' : 'right';
+      return `<button class="node ${st}${boss ? ' boss' : ''}" style="left:${p.x}%;top:${p.y}px" ${st === 'done' || st === 'cur' ? `data-go="#/lv/${lv}"` : 'disabled'} aria-label="Lv ${lv} ${label}">
+        <span class="dot">${st === 'locked' || st === 'soon' ? '🔒' : lv}</span>${label ? `<span class="lbl ${side}">${boss ? '<em>보스</em> ' : ''}${label}</span>` : ''}</button>`;
+    }).join('');
+    const sub = locked ? '앞 장 보스를 깨면 열려요' : allDone ? '모두 깸' : `${nDone} / ${n}`;
+    const banner = `<div class="banner${locked ? ' shadow' : ''}${allDone ? ' cleared' : ''}" style="top:${H - BANNER + 10}px">${art}<span class="mark">${esc(ch.mark || '')}</span>
+      <span class="bt"><small>${ch.no}장 · Lv ${ch.from}~${ch.to}</small><b>${locked ? '???' : esc(ch.title)}</b><small>${sub}</small></span></div>`;
+    return `<section class="chap${locked ? ' locked' : ''}" style="height:${H}px"><svg class="road" viewBox="0 0 360 ${H}" preserveAspectRatio="none" aria-hidden="true"><path d="${path}" class="r-all"/>${donePath ? `<path d="${donePath}" class="r-done"/>` : ''}</svg>${nodes}${banner}</section>`;
+  };
+  $app().innerHTML = `<div class="map-head sticky"><div class="small muted">남의 폰 — 남의 휴대폰으로 진실을 맞혀라</div><h1>Lv ${Math.min(open, LEVELS.length)} <span class="muted" style="font-size:16px">/ ${CFG.totalLevels || 1000}</span></h1>
     <div class="progress"><i style="width:${Math.max(1, (done / (CFG.totalLevels || 1000)) * 100)}%"></i></div><p class="small muted">깬 사건 ${done}개</p></div>
-    <ul class="levels">${rows}${more}</ul></div>`;
+    <div class="scroll stage" id="stagemap">${shown.slice().reverse().map(section).join('')}</div>`;
+  const cur = document.querySelector('.node.cur') || [...document.querySelectorAll('.node.done')].pop();
+  if (cur) cur.scrollIntoView({ block: 'center' }); else document.getElementById("stagemap").scrollTop = 1e6;
 }
 
 // ── 브리핑 ───────────────────────────────────
@@ -86,7 +121,7 @@ async function grade(c, answers) {
     return r && !r.error ? r : null;
   }
   const right = c.questions.filter((q) => sec.answers[q.id] === answers[q.id]).map((q) => q.id);
-  const who = c.questions.find((q) => q.kind === 'who')?.id;
+  const who = (['who', 'owner', 'what'].map((k) => c.questions.find((q) => q.kind === k)).find(Boolean) || c.questions[0])?.id; // 핵심 질문
   const need = c.questions.length >= 5 ? c.questions.length - 1 : c.questions.length;
   return { right: right.length, rightIds: right, solved: right.includes(who) && right.length >= need, explanation: sec.explanation, answerKey: sec.answers };
 }
