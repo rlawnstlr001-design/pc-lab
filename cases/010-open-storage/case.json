@@ -1,0 +1,123 @@
+{
+  "slug": "010-open-storage",
+  "tier": "short",
+  "title": "열린 창고",
+  "difficulty": 2,
+  "est_minutes": 12,
+  "player_role": "'느티 이웃장터' 부운영자 인채윤",
+  "brief": [
+    "12월 17일 목요일 새벽, 공동구매 모임 '느티 이웃장터' 단톡에 사진이 올라왔다 — 열린 창고 철문, 넘어진 의자, 책상 위 운영자 은서 언니의 폰.",
+    "07시에 달려가 보니 창고 선반은 텅 비어 있었다. 오늘 오후 46가구에 연말 선물세트를 나눠 주기로 한 날이다.",
+    "단톡은 '납치 아니냐'로 뒤집혔다. 경찰이 오기 전에, 언니 폰을 열어 본다."
+  ],
+  "now": "2026-12-17T11:20",
+  "owner": "p1",
+  "apps": ["lock", "messenger", "gallery", "calls"],
+  "people": [
+    {"id": "p1", "name": "모은서", "short": "은서", "tag": "폰 주인 · 장터 운영자", "phone": "010-0000-1001", "color": "#7a5cff"},
+    {"id": "p2", "name": "모준기", "short": "준기", "tag": "은서 동생", "phone": "010-0000-1002", "color": "#3a7bd5"},
+    {"id": "p3", "name": "엄창식", "short": "엄창식", "tag": "은서에게 돈을 빌려준 사람", "phone": "010-0000-1003", "color": "#8a6d3b"},
+    {"id": "p4", "name": "맹영수", "short": "맹 사장", "tag": "선물세트 업체 사장", "phone": "010-0000-1004", "color": "#2e9e6b"},
+    {"id": "p5", "name": "인채윤", "short": "채윤", "tag": "부운영자 · 나", "phone": "010-0000-1005", "color": "#d94f4f"},
+    {"id": "p6", "name": "차순미", "short": "순미", "tag": "장터 회원", "phone": "010-0000-1006", "color": "#f08a24"},
+    {"id": "p7", "name": "봉미래", "short": "미래", "tag": "장터 회원", "phone": "010-0000-1007", "color": "#e0457b"}
+  ],
+  "threads": [
+    {"id": "t1", "title": "느티 이웃장터 공지방", "members": ["p1", "p5", "p6", "p7"]},
+    {"id": "t2", "title": "준기", "members": ["p1", "p2"]},
+    {"id": "t3", "title": "엄창식", "members": ["p1", "p3"]},
+    {"id": "t4", "title": "맹영수 사장님", "members": ["p1", "p4"]},
+    {"id": "t5", "title": "채윤 씨", "members": ["p1", "p5"]}
+  ],
+  "lock": {
+    "length": 4,
+    "hash": "fe3b49f0370071e7d8368d78014b4ecd67a1328fb71e98ef77b5a42242b4ee9e",
+    "wallpaper": "img/wall.webp",
+    "wallpaper_alt": "회색 창고 철문. 문 위 흰 번호판에 'B동 0315'. 문 앞에 빈 플라스틱 상자 두 개.",
+    "notifications": ["m6", "c5", "m25", "m14"]
+  },
+  "locks": [
+    {"id": "L1", "length": 4, "label": "숨긴 앨범", "hash": "77fd397dd3d660a335a80ff86ea6498bccb82413b57b62021da89477f1b633f2"}
+  ],
+  "items": [
+    {"id": "g1", "app": "gallery", "img": "img/g1.webp", "alt": "여객선 터미널 벽의 시간표 판. '물빛항 → 안개섬 08:30 · 13:10 · 16:40'.", "at": "2026-09-06T08:05", "album": "main", "place": "물빛항 여객선터미널"},
+    {"id": "g6", "app": "gallery", "img": "img/g6.webp", "alt": "선착장 난간 앞에 선 두 사람의 뒷모습. 멀리 바다 위 작은 섬. 난간에 걸린 팻말 '안개섬 선착장'.", "at": "2026-09-06T11:30", "album": "hidden", "place": "안개섬", "locked_by": "L1"},
+    {"id": "m11", "app": "messenger", "thread": "t2", "from": "p2", "at": "2026-09-07T21:00", "text": "누나 여행 사진 숨긴 앨범에 넣었지? 비번 뭐야"},
+    {"id": "m12", "app": "messenger", "thread": "t2", "from": "p1", "at": "2026-09-07T21:02", "text": "첫 배 시각 ㅋㅋ 시간표 찍어 놨잖아"},
+    {"id": "m13", "app": "messenger", "thread": "t2", "from": "p2", "at": "2026-09-07T21:03", "text": "그걸 어떻게 외워 ㅋㅋ"},
+    {"id": "g7", "app": "gallery", "img": "img/g7.webp", "alt": "흰 탁자 위 붉은 보자기로 싼 선물 상자 하나. 보자기 매듭에 작은 종이 꼬리표 '견본'.", "at": "2026-11-20T09:40", "album": "main", "place": "느티동"},
+    {"id": "m1", "app": "messenger", "thread": "t1", "from": "p1", "at": "2026-11-20T10:00", "text": "연말 한우 선물세트 공구 열어요~ 세트당 15만 원, 한 가구 4세트 묶음(60만 원)이에요. 12/5까지 입금해 주세요!"},
+    {"id": "m23", "app": "messenger", "thread": "t3", "from": "p3", "at": "2026-11-30T18:00", "text": "이달 이자 아직입니다. 확인 바랍니다."},
+    {"id": "m27", "app": "messenger", "thread": "t4", "from": "p4", "at": "2026-12-01T11:00", "text": "사장님, 이번 공구 수량 확정되면 대금 먼저 부탁드립니다."},
+    {"id": "m28", "app": "messenger", "thread": "t4", "from": "p1", "at": "2026-12-01T11:20", "text": "네 사장님~ 6일에 한 번에 보낼게요"},
+    {"id": "m2", "app": "messenger", "thread": "t1", "from": "p1", "at": "2026-12-06T09:00", "text": "46가구 184세트, 2,760만 원 입금 확인했어요. 감사합니다~"},
+    {"id": "m24", "app": "messenger", "thread": "t3", "from": "p3", "at": "2026-12-07T18:00", "text": "이자 두 달째요. 전화 피하지 마세요."},
+    {"id": "m29", "app": "messenger", "thread": "t4", "from": "p4", "at": "2026-12-10T09:30", "text": "입금이 안 돼서 발주를 못 넣었습니다. 확인 부탁드립니다."},
+    {"id": "m14", "app": "messenger", "thread": "t2", "from": "p2", "at": "2026-12-10T19:30", "text": "누나 폰 비번을 창고 번호로 해 놓으면 어떡해 ㅋㅋ 바꿔"},
+    {"id": "m30", "app": "messenger", "thread": "t4", "from": "p1", "at": "2026-12-11T13:00", "text": "죄송해요 사장님 ㅠ 이번 주 안에 꼭 보낼게요"},
+    {"id": "g5", "app": "gallery", "img": "img/g5.webp", "alt": "책상 위 뜯지 않은 새 휴대폰 상자와 작은 유심 카드 봉투.", "at": "2026-12-12T15:30", "album": "hidden", "place": "느티동", "locked_by": "L1"},
+    {"id": "c1", "app": "calls", "with": "p3", "dir": "missed", "at": "2026-12-14T20:10", "dur_sec": 0},
+    {"id": "m25", "app": "messenger", "thread": "t3", "from": "p3", "at": "2026-12-14T20:15", "text": "이번 주 안 갚으면 창고로 찾아간다"},
+    {"id": "m31", "app": "messenger", "thread": "t4", "from": "p4", "at": "2026-12-15T16:00", "text": "연락이 안 되네요. 이렇게 나오면 가만 안 있겠습니다."},
+    {"id": "m33", "app": "messenger", "thread": "t5", "from": "p1", "at": "2026-12-16T18:00", "text": "채윤 씨 내일 2시 나눔 같이 해요~"},
+    {"id": "m34", "app": "messenger", "thread": "t5", "from": "p5", "at": "2026-12-16T18:02", "text": "네 언니! 1시 반까지 갈게요"},
+    {"id": "m3", "app": "messenger", "thread": "t1", "from": "p1", "at": "2026-12-16T21:00", "text": "창고에 물건 가득 들어왔어요! 내일 오후 2시부터 나눠 드려요~"},
+    {"id": "m4", "app": "messenger", "thread": "t1", "from": "p7", "at": "2026-12-16T21:03", "text": "와 드디어 ㅎㅎ 퇴근하고 갈게요"},
+    {"id": "g3", "app": "gallery", "img": "img/g3.webp", "alt": "방바닥에 세워 둔 캐리어 두 개. 위에 종이 배표 한 장 '물빛항 → 안개섬 · 12/17 08:30 · 편도 · 어른 1'.", "at": "2026-12-16T22:10", "album": "hidden", "place": "느티동", "locked_by": "L1"},
+    {"id": "c3", "app": "calls", "with": "p2", "dir": "in", "at": "2026-12-16T22:40", "dur_sec": 180},
+    {"id": "m15", "app": "messenger", "thread": "t2", "from": "p1", "at": "2026-12-16T22:58", "deleted": true},
+    {"id": "m16", "app": "messenger", "thread": "t2", "from": "p2", "at": "2026-12-16T23:02", "text": "내일 다섯 시 오십 분 창고 앞"},
+    {"id": "m17", "app": "messenger", "thread": "t2", "from": "p1", "at": "2026-12-16T23:03", "deleted": true},
+    {"id": "m18", "app": "messenger", "thread": "t2", "from": "p2", "at": "2026-12-16T23:05", "text": "알았어. 늦지 마"},
+    {"id": "m19", "app": "messenger", "thread": "t2", "from": "p1", "at": "2026-12-16T23:06", "deleted": true},
+    {"id": "m20", "app": "messenger", "thread": "t2", "from": "p2", "at": "2026-12-16T23:07", "text": "ㅇㅋ"},
+    {"id": "g4", "app": "gallery", "img": "img/g4.webp", "alt": "형광등 아래 텅 빈 철제 선반들. 바닥에 빈 종이 상자 하나.", "at": "2026-12-17T05:20", "album": "hidden", "place": "느티동 B동 창고", "locked_by": "L1"},
+    {"id": "m21", "app": "messenger", "thread": "t2", "from": "p2", "at": "2026-12-17T05:52", "text": "앞이야. 다 실었어"},
+    {"id": "m22", "app": "messenger", "thread": "t2", "from": "p1", "at": "2026-12-17T05:53", "deleted": true},
+    {"id": "m36", "app": "messenger", "thread": "t2", "from": "p2", "at": "2026-12-17T05:54", "text": "누나?"},
+    {"id": "m5", "app": "messenger", "thread": "t1", "from": "p6", "at": "2026-12-17T06:40", "img": "img/g2.webp", "alt": "새벽빛 속 반쯤 열린 회색 창고 철문 안쪽. 바닥에 넘어진 철제 의자, 책상 위에 엎어진 휴대폰 한 대. 안쪽은 어두워 잘 보이지 않는다."},
+    {"id": "m6", "app": "messenger", "thread": "t1", "from": "p6", "at": "2026-12-17T06:41", "text": "출근길에 봤는데 창고 문 열려 있고 운영자님 폰만 있어요. 납치 아니에요??"},
+    {"id": "m7", "app": "messenger", "thread": "t1", "from": "p7", "at": "2026-12-17T06:44", "text": "헐 지난주에 창고 앞에서 소리 지르던 그 아저씨 아니에요?"},
+    {"id": "m35", "app": "messenger", "thread": "t5", "from": "p5", "at": "2026-12-17T06:45", "text": "언니 창고 문 열려 있대요 어디세요??"},
+    {"id": "c4", "app": "calls", "with": "p5", "dir": "missed", "at": "2026-12-17T06:46", "dur_sec": 0},
+    {"id": "m8", "app": "messenger", "thread": "t1", "from": "p5", "at": "2026-12-17T07:20", "text": "제가 창고 왔어요. 경찰에 신고했고 운영자님 폰은 제가 갖고 있어요"},
+    {"id": "c5", "app": "calls", "with": "p3", "dir": "missed", "at": "2026-12-17T08:10", "dur_sec": 0},
+    {"id": "c6", "app": "calls", "with": "p3", "dir": "missed", "at": "2026-12-17T08:40", "dur_sec": 0},
+    {"id": "c7", "app": "calls", "with": "p3", "dir": "missed", "at": "2026-12-17T09:15", "dur_sec": 0},
+    {"id": "m32", "app": "messenger", "thread": "t4", "from": "p4", "at": "2026-12-17T10:00", "text": "회원분들 연락 받고 알았습니다. 저도 대금 한 푼도 못 받았어요."},
+    {"id": "c8", "app": "calls", "with": "p4", "dir": "missed", "at": "2026-12-17T10:05", "dur_sec": 0},
+    {"id": "m9", "app": "messenger", "thread": "t1", "from": "p7", "at": "2026-12-17T10:20", "text": "업체 사장님이 대금을 하나도 못 받았다는데요?? 무슨 말이에요"},
+    {"id": "m10", "app": "messenger", "thread": "t1", "from": "p6", "at": "2026-12-17T10:26", "text": "업체 사장님 말이 맞아요?? 운영자님 어디 계신 거예요 …"},
+    {"id": "c9", "app": "calls", "with": "p3", "dir": "missed", "at": "2026-12-17T10:40", "dur_sec": 0},
+    {"id": "m26", "app": "messenger", "thread": "t3", "from": "p3", "at": "2026-12-17T11:00", "text": "어디 숨었어? 전화 받아"}
+  ],
+  "questions": [
+    {"id": "q1", "kind": "who", "prompt": "열린 창고 소동에 가장 큰 책임이 있는 사람은?",
+     "options": [
+       {"id": "a", "label": "엄창식 — 은서에게 돈을 빌려준 사람"},
+       {"id": "b", "label": "맹영수 — 선물세트 업체 사장"},
+       {"id": "c", "label": "차순미 — 장터 회원, 사진을 올린 사람"},
+       {"id": "d", "label": "모은서 — 폰 주인, 장터 운영자"},
+       {"id": "e", "label": "모준기 — 은서 동생, 폰 비번을 아는 사람"},
+       {"id": "f", "label": "폰에 없는 사람 — 새벽의 낯선 침입자"}
+     ]},
+    {"id": "q2", "kind": "how", "prompt": "은서는 창고에서 어떻게 사라졌나?",
+     "options": [
+       {"id": "a", "label": "새벽에 찾아온 빚쟁이에게 끌려 차에 실려 갔다"},
+       {"id": "b", "label": "업체 사장과 다투다 그의 차를 타고 창고를 나갔다"},
+       {"id": "c", "label": "스스로 짐을 꾸려 두고 동생 차를 타고 떠났다"},
+       {"id": "d", "label": "동생이 누나를 억지로 차에 태워 어디론가 데려갔다"},
+       {"id": "e", "label": "회원 항의가 두려워 폰을 떨군 채 근처에 숨었다"},
+       {"id": "f", "label": "혼자 짐을 들고 나가 첫 버스를 타고 떠났다"}
+     ]},
+    {"id": "q3", "kind": "why", "prompt": "그날 새벽 일이 벌어진 가장 큰 이유는?",
+     "options": [
+       {"id": "a", "label": "빚 독촉 끝에 빚쟁이가 운영자를 데려가서"},
+       {"id": "b", "label": "업체에 안 보낸 대금을 챙겨 아주 떠나려고"},
+       {"id": "c", "label": "대금을 못 받은 업체 사장이 운영자를 붙잡아 가서"},
+       {"id": "d", "label": "대금은 보냈는데 물건이 안 와 항의를 피하려고"},
+       {"id": "e", "label": "업체에 안 보낸 게 들통날까 봐 며칠만 숨으려고"},
+       {"id": "f", "label": "동생 빚을 대신 갚느라 잠시 몸을 피하려고"}
+     ]}
+  ]
+}

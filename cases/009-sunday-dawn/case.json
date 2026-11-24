@@ -1,0 +1,112 @@
+{
+  "slug": "009-sunday-dawn",
+  "tier": "short",
+  "title": "일요일 새벽",
+  "difficulty": 2,
+  "est_minutes": 10,
+  "player_role": "하준의 룸메이트 여민재",
+  "brief": [
+    "9월 13일 일요일 아침, 룸메이트 하준에게 전화를 걸었더니 하준 방 책상 위에서 벨이 울렸다.",
+    "오후가 되도록 하준은 연락이 없고, 하준의 카페는 셔터가 내려져 있다. 우리는 서로 폰 비밀번호를 안다.",
+    "토요일 밤 '먼저 잔다'가 내게 온 마지막 메시지 — 그 뒤에 무슨 일이 있었을까?"
+  ],
+  "now": "2026-09-13T15:10",
+  "owner": "p1",
+  "apps": ["messenger", "calls", "notes", "gallery"],
+  "people": [
+    {"id": "p1", "name": "우하준", "short": "하준", "tag": "폰 주인 · 룸메이트, 카페 '달무리 커피' 사장", "phone": "010-0000-0901", "color": "#3a7bd5"},
+    {"id": "p2", "name": "반석훈", "short": "석훈", "tag": "하준의 옛 동업자", "phone": "010-0000-0902", "color": "#8a6d3b"},
+    {"id": "p3", "name": "기민서", "short": "민서", "tag": "하준 여자친구", "phone": "010-0000-0903", "color": "#e0457b"},
+    {"id": "p4", "name": "고은결", "short": "은결", "tag": "전 카페 알바", "phone": "010-0000-0904", "color": "#f08a24"},
+    {"id": "p5", "name": "여민재", "short": "민재", "tag": "룸메이트 · 나", "phone": "010-0000-0905", "color": "#d94f4f"},
+    {"id": "p6", "name": "도경만", "short": "외삼촌", "tag": "하준 외삼촌", "phone": "010-0000-0906", "color": "#2e9e6b"},
+    {"id": "p7", "name": "대출 안내", "short": "대출 안내", "tag": "자동 안내 문자", "phone": "010-0000-0907", "color": "#888888"}
+  ],
+  "threads": [
+    {"id": "t1", "title": "민재", "members": ["p1", "p5"]},
+    {"id": "t2", "title": "반석훈", "members": ["p1", "p2"]},
+    {"id": "t3", "title": "민서", "members": ["p1", "p3"]},
+    {"id": "t4", "title": "은결", "members": ["p1", "p4"]},
+    {"id": "t5", "title": "외삼촌", "members": ["p1", "p6"]},
+    {"id": "t6", "title": "대출 안내", "members": ["p1", "p7"]}
+  ],
+  "locks": [
+    {"id": "L1", "length": 4, "label": "잠긴 메모", "hash": "604b7b75b8df0a99210773c0c97bd95efb1c1583833a879851575cfef6a1ca55"}
+  ],
+  "items": [
+    {"id": "g1", "app": "gallery", "img": "img/g1.webp", "alt": "영화관 로비 탁자 위, 영화표 한 장을 든 손. 표 글자 '별무리시네마 · 3관 · 2026.03.02 20:10 · 14열 07번'. 옆에 팝콘 통.", "at": "2026-03-02T19:58", "album": "main", "place": "별무리시네마"},
+    {"id": "g2", "app": "gallery", "img": "img/g2.webp", "alt": "사과나무 아래 쌓인 나무 사과 상자들. 맨 위 상자 옆면 글씨 '구름재 과수원'. 상자를 드는 두 손.", "at": "2026-08-15T11:00", "album": "main", "place": "구름재"},
+    {"id": "m30", "app": "messenger", "thread": "t6", "from": "p7", "at": "2026-08-11T10:00", "text": "[대출 안내] 우하준 님, 8월 대출 이자가 연체되었습니다(1회)."},
+    {"id": "m27", "app": "messenger", "thread": "t5", "from": "p6", "at": "2026-08-16T19:00", "text": "사과는 잘 갔냐. 다음엔 5시 50분 첫차 말고 좀 자고 와라"},
+    {"id": "m28", "app": "messenger", "thread": "t5", "from": "p1", "at": "2026-08-16T19:10", "text": "네 삼촌 ㅎㅎ 덕분에 카페에서 사과 주스 팔아요"},
+    {"id": "m29", "app": "messenger", "thread": "t5", "from": "p6", "at": "2026-08-16T19:12", "text": "그래. 힘들면 언제든 내려와라. 과수원 방 하나는 늘 비어 있다"},
+    {"id": "m1", "app": "messenger", "thread": "t1", "from": "p5", "at": "2026-08-30T22:10", "text": "카페 공유기 비번 뭐였지? 노트북이 안 붙어"},
+    {"id": "m2", "app": "messenger", "thread": "t1", "from": "p1", "at": "2026-08-30T22:12", "text": "그런 중요한 건 메모에 잠가 놨지 ㅋ"},
+    {"id": "m3", "app": "messenger", "thread": "t1", "from": "p1", "at": "2026-08-30T22:12", "text": "메모 비번은 우리 처음 같이 본 영화 내 자리. 사진첩에 표 있음"},
+    {"id": "m4", "app": "messenger", "thread": "t1", "from": "p5", "at": "2026-08-30T22:13", "text": "아 그걸 언제 찾아 ㅋㅋ 그냥 불러 줘"},
+    {"id": "m5", "app": "messenger", "thread": "t1", "from": "p1", "at": "2026-08-30T22:14", "text": "dalmuri_coffee ㅋㅋ 외워라"},
+    {"id": "m14", "app": "messenger", "thread": "t2", "from": "p2", "at": "2026-09-01T14:10", "text": "카페 잘되냐? 요즘 밤늦게까지 있더라"},
+    {"id": "m15", "app": "messenger", "thread": "t2", "from": "p1", "at": "2026-09-01T14:30", "text": "어 와. 커피는 줄게"},
+    {"id": "m32", "app": "messenger", "thread": "t3", "from": "p3", "at": "2026-09-05T20:10", "text": "부모님 바닷가 펜션 이번 달 손님 없대. 방 비었으니까 바람 쐬러 가자"},
+    {"id": "m33", "app": "messenger", "thread": "t3", "from": "p1", "at": "2026-09-05T20:31", "text": "가게 비우기가 좀 그래. 다음에 가자"},
+    {"id": "n2", "app": "notes", "title": "이번 주 할 일", "text": "- 은결이 밀린 월급 (금요일까지)\n- 원두 거래처 전화\n- 민재랑 관리비 반반\n- 대출 내역서 떼기", "at": "2026-09-07T09:30"},
+    {"id": "n1", "app": "notes", "title": "카페 발주", "text": "원두 2kg\n우유 12팩\n컵 뚜껑 300\n사과 주스용 사과 — 외삼촌께 한 상자 더 부탁", "at": "2026-09-09T08:20"},
+    {"id": "c8", "app": "calls", "with": "p4", "dir": "in", "at": "2026-09-10T18:00", "dur_sec": 90},
+    {"id": "m24", "app": "messenger", "thread": "t4", "from": "p4", "at": "2026-09-10T18:20", "text": "월급 두 달 밀린 거 언제 주세요?"},
+    {"id": "m25", "app": "messenger", "thread": "t4", "from": "p1", "at": "2026-09-10T18:22", "text": "이번 주 안에 꼭 줄게. 미안하다"},
+    {"id": "m26", "app": "messenger", "thread": "t4", "from": "p4", "at": "2026-09-10T18:30", "text": "저 그만둘게요. 사장님 가만 안 둬요"},
+    {"id": "m31", "app": "messenger", "thread": "t6", "from": "p7", "at": "2026-09-11T10:00", "text": "[대출 안내] 우하준 님, 대출 이자 연체 2회. 원금 30,000,000원 일시 상환 대상이 될 수 있습니다."},
+    {"id": "g3", "app": "gallery", "img": "img/g3.webp", "alt": "책상 위 서류를 누른 손. 보이는 글자 '차용인 우하준 · 금 30,000,000원 · 2025.11.20'. 서류 옆에 볼펜 하나.", "at": "2026-09-11T22:40", "album": "main", "place": "느티동"},
+    {"id": "n4", "app": "notes", "title": "대출 정리", "text": "작년 11월 동업 정리할 때 인감·신분증 석훈한테 맡김\n→ 그때 내 이름으로 3천 대출, 돈은 석훈 계좌로\n차용증 사본 찍어 둠\n동업 때 서로 켜 둔 위치 공유 — 아직 그대로\n이자 연체 2회째 — 나한테 날아옴\n월요일: 내역서 들고 신고", "at": "2026-09-11T23:05", "locked_by": "L1"},
+    {"id": "m11", "app": "messenger", "thread": "t2", "from": "p1", "at": "2026-09-12T12:30", "text": "대출 서류 봤어. 얘기 좀 하자"},
+    {"id": "m12", "app": "messenger", "thread": "t2", "from": "p1", "at": "2026-09-12T12:32", "text": "월요일에 다 정리할 거야"},
+    {"id": "m13", "app": "messenger", "thread": "t2", "from": "p2", "at": "2026-09-12T12:40", "text": "흥분하지 말고. 통화로 얘기하자"},
+    {"id": "c1", "app": "calls", "with": "p4", "dir": "in", "at": "2026-09-12T15:00", "dur_sec": 240},
+    {"id": "m6", "app": "messenger", "thread": "t1", "from": "p1", "at": "2026-09-12T15:20", "text": "은결이 밀린 월급 보냈더니 사과하더라. 마음이 좀 풀림"},
+    {"id": "m7", "app": "messenger", "thread": "t1", "from": "p5", "at": "2026-09-12T15:22", "text": "ㅋㅋ 잘됐네. 걔도 속상했겠지"},
+    {"id": "m17", "app": "messenger", "thread": "t3", "from": "p3", "at": "2026-09-12T21:30", "text": "오늘도 카페 일 때문에 못 본다는 거지?"},
+    {"id": "m18", "app": "messenger", "thread": "t3", "from": "p1", "at": "2026-09-12T21:34", "text": "미안. 요즘 정리할 일이 좀 있어"},
+    {"id": "m19", "app": "messenger", "thread": "t3", "from": "p3", "at": "2026-09-12T21:40", "text": "맨날 정리할 일. 나한텐 말도 안 하고"},
+    {"id": "m20", "app": "messenger", "thread": "t3", "from": "p1", "at": "2026-09-12T21:52", "text": "나중에 다 얘기할게"},
+    {"id": "m21", "app": "messenger", "thread": "t3", "from": "p3", "at": "2026-09-12T22:00", "text": "됐어. 다신 연락하지 마"},
+    {"id": "m8", "app": "messenger", "thread": "t1", "from": "p5", "at": "2026-09-12T23:05", "text": "나 오늘 친구 생일이라 늦어. 문 걸지 마"},
+    {"id": "m9", "app": "messenger", "thread": "t1", "from": "p1", "at": "2026-09-12T23:10", "text": "ㅇㅋ 먼저 잔다"},
+    {"id": "c3", "app": "calls", "with": "p2", "dir": "in", "at": "2026-09-13T01:50", "dur_sec": 660},
+    {"id": "c10", "app": "calls", "with": "p3", "dir": "out", "at": "2026-09-13T05:12", "dur_sec": 30},
+    {"id": "c4", "app": "calls", "with": "p6", "dir": "out", "at": "2026-09-13T05:20", "dur_sec": 120},
+    {"id": "n5", "app": "notes", "title": "일요일", "text": "폰은 두고 간다\n첫차로. 방 하나는 늘 비어 있다 했으니\n월요일엔 같이 가 주신대", "at": "2026-09-13T05:31", "locked_by": "L1"},
+    {"id": "m10", "app": "messenger", "thread": "t1", "from": "p5", "at": "2026-09-13T08:40", "text": "야 카페 안 가? 9시 오픈이잖아"},
+    {"id": "c5", "app": "calls", "with": "p5", "dir": "missed", "at": "2026-09-13T08:45", "dur_sec": 0},
+    {"id": "m22", "app": "messenger", "thread": "t3", "from": "p3", "at": "2026-09-13T09:05", "img": "img/g4.webp", "alt": "아침 햇빛 속 셔터가 내려진 작은 카페 앞. 셔터 위 간판 '달무리 커피'. 문 앞에 화분 두 개."},
+    {"id": "m23", "app": "messenger", "thread": "t3", "from": "p3", "at": "2026-09-13T09:06", "text": "어제 말 심했어. 새벽엔 미안하다고만 하고 끊더라. 카페 문 닫혀 있던데 괜찮아?"},
+    {"id": "c6", "app": "calls", "with": "p2", "dir": "missed", "at": "2026-09-13T10:20", "dur_sec": 0},
+    {"id": "c7", "app": "calls", "with": "p2", "dir": "missed", "at": "2026-09-13T13:10", "dur_sec": 0},
+    {"id": "m16", "app": "messenger", "thread": "t2", "from": "p2", "at": "2026-09-13T14:00", "text": "어제 낮 문자 이후로 연락이 안 되네. 무슨 일 있어?"}
+  ],
+  "questions": [
+    {"id": "q1", "kind": "who", "prompt": "하준이 폰을 두고 집을 떠나게 만든 사람은?",
+     "options": [
+       {"id": "a", "label": "기민서 — 하준 여자친구"},
+       {"id": "b", "label": "고은결 — 전 카페 알바"},
+       {"id": "c", "label": "반석훈 — 하준의 옛 동업자"},
+       {"id": "d", "label": "도경만 — 하준 외삼촌"},
+       {"id": "e", "label": "아무도 없다 — 혼자 여행을 떠났다"}
+     ]},
+    {"id": "q2", "kind": "when", "prompt": "하준이 집을 나선 때는?",
+     "options": [
+       {"id": "a", "label": "9/12(토) 밤 10시~10시 반"},
+       {"id": "b", "label": "9/12(토) 밤 11시 반~자정"},
+       {"id": "c", "label": "9/13(일) 새벽 2시~2시 반"},
+       {"id": "d", "label": "9/13(일) 새벽 5시 반~6시"},
+       {"id": "e", "label": "9/13(일) 아침 7시 반~8시"}
+     ]},
+    {"id": "q3", "kind": "where", "prompt": "하준이 지금 머무는 곳은?",
+     "options": [
+       {"id": "a", "label": "바닷가 민서네 부모님 펜션"},
+       {"id": "b", "label": "셔터 내린 달무리 커피 안"},
+       {"id": "c", "label": "읍내 석훈의 창고 사무실"},
+       {"id": "d", "label": "구름재 외삼촌네 과수원"},
+       {"id": "e", "label": "역 앞 이십사 시간 찜질방"}
+     ]}
+  ]
+}
