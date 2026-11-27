@@ -1,8 +1,8 @@
 // 「남의 폰」(가칭) — 라우팅 · 레벨 지도 · 브리핑 · 지목 · 결과
 // #/ 지도 · #/lv/N 브리핑 · #/lv/N/phone|m|g|p|n|c|pins 폰 · #/lv/N/accuse 지목 · #/lv/N/result 결과
-import { $app, esc, go, toast } from './ui.js?v=202611241048';
-import { loadLevels, loadChapters, loadCase, loadSecretDev, progress, rpc, track, startPlay } from './store.js?v=202611241048';
-import { renderPhone, togglePin } from './phone.js?v=202611241048';
+import { $app, esc, go, toast } from './ui.js?v=202611270055';
+import { loadLevels, loadChapters, loadCase, loadSecretDev, progress, rpc, track, startPlay } from './store.js?v=202611270055';
+import { renderPhone, togglePin } from './phone.js?v=202611270055';
 
 const CFG = window.PC_CONFIG || {};
 const TIER = { mini: '3~5분', short: '약 10분', main: '보스 · 30분' };

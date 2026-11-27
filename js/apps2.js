@@ -1,5 +1,5 @@
 // 2장(11/24~) 새 앱: 메일 · 은행 · 캘린더 · 위치 기록 — phone.js가 부른다. 항목 형식은 cases/SPEC.md
-import { esc, bar, photo, fmtDay, fmtTime, fmtShortDay, fmtClock, sameDay } from './ui.js?v=202611241048';
+import { esc, bar, photo, fmtDay, fmtTime, fmtShortDay, fmtClock, sameDay } from './ui.js?v=202611270055';
 
 export const APP_META2 = {
   mail: { name: '메일', icon: '@', bg: '#7a4fc4', path: 'e' },

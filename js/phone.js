@@ -1,7 +1,7 @@
 // 가짜 폰: 잠금 화면 · 홈 · 메신저 · 사진 · 메모 · 전화 · 안쪽 잠금 · 수사 노트 (메일·은행·캘린더·위치 기록은 apps2.js)
-import { esc, bar, avatar, photo, fmtDay, fmtTime, fmtClock, fmtLockDate, fmtShortDay, sameDay, fmtDur, toast, go } from './ui.js?v=202611241048';
-import { progress, checkCode, loadSecretDev, rpc, track, startPlay } from './store.js?v=202611241048';
-import { APP_META2, notiText, pinLine, mailList, mailView, bank, calendar, maps } from './apps2.js?v=202611241048';
+import { esc, bar, avatar, photo, fmtDay, fmtTime, fmtClock, fmtLockDate, fmtShortDay, sameDay, fmtDur, toast, go } from './ui.js?v=202611270055';
+import { progress, checkCode, loadSecretDev, rpc, track, startPlay } from './store.js?v=202611270055';
+import { APP_META2, notiText, pinLine, mailList, mailView, bank, calendar, maps } from './apps2.js?v=202611270055';
 
 const APP_META = {
   messenger: { name: '메신저', icon: '✉', bg: '#0f7b6c', path: 'm' },
@@ -41,12 +41,15 @@ function lockScreen(c, s) {
     const what = it.app === 'messenger' ? preview(it) : it.app === 'calls' ? (it.dir === 'missed' ? '부재중 전화' : '통화') : it.title || '';
     return `<div class="noti"><b><span>${APP_META[it.app]?.name || ''} · ${esc(who)}</span><span>${fmtShortDay(it.at)} ${fmtClock(it.at)}</span></b>${esc(what)}</div>`;
   }).join('');
-  const wall = c.lock.wallpaper ? `<div class="wall" style="background-image:url('${esc(base(c) + c.lock.wallpaper)}')"></div>` : '';
+  // 배경 그림: 배포본 버전(?v=)을 붙여 캐시 꼬임을 막고, 그래도 못 불러오면 설명 글로 대신 보여 준다(11/27 Lv9 배경 안 뜸)
+  const ver = new URL(import.meta.url).search;
+  const wall = c.lock.wallpaper ? `<img class="wall" src="${esc(base(c) + c.lock.wallpaper + ver)}" alt="" onerror="this.closest('.lock').classList.add('nowall')"><p class="wall-text">${esc(c.lock.wallpaper_alt || '')}</p>` : '';
   // 배경화면 설명 글은 화면 읽기용(aria)으로만 — 그림이 있으니 눈에는 '배경 보기'로 직접 보게 한다
   const wallAlt = c.lock.wallpaper ? `<button class="peek-btn" data-peek="1" aria-label="배경화면 보기: ${esc(c.lock.wallpaper_alt || '')}">배경 보기</button>` : '';
   return `<div class="lock" id="lockview">${wall}${statusBar(c, true)}
     <div class="clock"><b>${fmtClock(c.now)}</b>${fmtLockDate(c.now)}</div>
-    <div class="scroll notis">${notis}${wallAlt}</div>
+    ${wallAlt}
+    <div class="scroll notis">${notis}</div>
     <div class="keypad-wrap"><p style="text-align:center;margin:0 0 4px;font-size:13px">비밀번호 ${c.lock.length}자리</p>${keypad(c.lock.length, 0)}</div>
   </div>`;
 }
